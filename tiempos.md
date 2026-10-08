@@ -116,6 +116,40 @@ todos los procesos recorran casi todo su rango.
 
 ---
 
+## Resultados en Windows (PowerShell + MinGW + Open MPI)
+
+Ejecutados con `mingw32-make run_mpi NP=<N>` (internamente
+`mpiexec -n <N> .\busqueda_clave_aes_mpi.exe`). Misma clave secreta
+(12 345) y mismo espacio de búsqueda (2²⁰).
+
+### Secuencial mejorada
+
+```
+Clave encontrada: 12345
+Mensaje:          Puedes lograrlo!
+Ejecucion: secuencial (mejorada)
+Tiempo:    0.012195 segundos
+Rango:     0 .. 1048575 (2^20)
+```
+
+### Paralela MPI (T_seq = 0.012195 s)
+
+| N (procesos) | Tiempo paralelo (s) | Speedup = T_seq / T_par |
+|:---:|:---:|:---:|
+| 2 | 0.519951 | 0.0235 |
+| 3 | 0.342404 | 0.0356 |
+| 4 | 0.267621 | 0.0456 |
+
+> Una ejecución adicional con `make run_mpi` (N = 4 por defecto) dio
+> 0.261373 s (Speedup 0.0467), consistente con la corrida de N = 4.
+
+**Observación:** igual que en WSL, el Speedup es < 1 porque la clave
+(12 345) está al inicio del espacio de búsqueda y el overhead de
+inicialización de MPI domina sobre el cómputo. Aun así, el tiempo
+paralelo baja de forma consistente al aumentar N (0.520 → 0.342 → 0.268 s).
+
+---
+
 ## Análisis de Speedup (para completar con datos de Mac M2)
 
 La ley de Amdahl establece:
