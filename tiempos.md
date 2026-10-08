@@ -26,7 +26,7 @@ gcc -std=c11 -O2 -Wall -Wextra busqueda_clave_aes_secuencial.c \
 |---|---|
 | Clave encontrada | 12345 |
 | Mensaje recuperado | `Puedes lograrlo!` |
-| Tiempo de ejecución | _(completar con resultado en Mac M2)_ s |
+| Tiempo de ejecución | 0.003905 s |
 
 ---
 
@@ -42,7 +42,7 @@ gcc -std=c11 -O2 -Wall -Wextra busqueda_clave_aes_mejorada.c \
 |---|---|
 | Clave encontrada | 12345 |
 | Mensaje recuperado | `Puedes lograrlo!` |
-| Tiempo de ejecución (T_seq) | _(completar con resultado en Mac M2)_ s |
+| Tiempo de ejecución (T_seq) | 0.008125 s |
 
 > **T_seq** es el valor de referencia para calcular el Speedup en el ejercicio 4.
 
@@ -60,10 +60,10 @@ mpirun -np <N> ./busqueda_clave_aes_mpi <T_seq>
 
 | N (procesos) | Tiempo paralelo (s) | Speedup = T_seq / T_par |
 |:---:|:---:|:---:|
-| 1 (referencia) | _(T_seq)_ | 1.0000 |
-| 2 | _(completar)_ | _(completar)_ |
-| 3 | _(completar)_ | _(completar)_ |
-| 4 | _(completar)_ | _(completar)_ |
+| 1 (referencia) | 0.008125 | 1.0000 |
+| 2 | 0.451749 | 0.0180 |
+| 3 | 0.208036 | 0.0391 |
+| 4 | 0.160880 | 0.0505 |
 
 ---
 
